@@ -6,26 +6,24 @@ var expect = require('chai').expect,
 // Test
 joe.describe('trickle plugin', function(describe,it){
 	var Chainy = require('chainy-core').subclass().require('set').addExtension('trickle', require('../'))
-
-	it("should trickle correctly", function(next){
+	it("should work", function(next){
 		Chainy.create()
-			.set('*')
-			.trickle(function(a, complete){
-				expect(a, 'initial trickle').to.eql('*')
-				complete(null, 1, 2, 3)
+			.set([1,2,3])
+			.trickle(function(a,b,c){
+				expect(a).to.equal(1)
+				expect(b).to.equal(2)
+				expect(c).to.equal(3)
+				return [a*2, b*2, c*2]
 			})
-			.trickle(function(a, b, c, complete){
-				expect([a, b, c], 'multiple args trickle').to.deep.equal([1, 2, 3])
-				complete()
-			})
-			.trickle(function(){
-				var args = Array.prototype.slice.call(arguments)
-				expect(args, 'carry on').to.deep.equal([1, 2, 3])
-				return 'done'
+			.trickle(function(a,b,c,next){
+				expect(a).to.equal(2)
+				expect(b).to.equal(4)
+				expect(c).to.equal(6)
+				next()
 			})
 			.done(function(err, result){
 				if (err)  return next(err)
-				expect(result).to.eql('done')
+				expect(result).to.deep.equal([2,4,6])
 				return next()
 			})
 	})

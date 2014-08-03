@@ -1,7 +1,7 @@
 {
   "title": "Trickle action for [ChainyJS](http://chainyjs.org)",
   "name": "chainy-plugin-trickle",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Chainy action that treats the chain's data as arguments to trickle down as a waterfall",
   "homepage": "https://github.com/chainy-plugins/trickle",
   "keywords": [
@@ -30,7 +30,9 @@
   "maintainers": [
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
   ],
-  "contributors": [],
+  "contributors": [
+    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+  ],
   "bugs": {
     "url": "https://github.com/chainy-plugins/trickle/issues"
   },
@@ -38,12 +40,13 @@
     "type": "git",
     "url": "http://github.com/chainy-plugins/trickle.git"
   },
+  "browsers": true,
   "engines": {
     "node": ">=0.4"
   },
   "dependencies": {},
   "peerDependencies": {
-    "chainy-core": "1"
+    "chainy-core": "^1.5.0"
   },
   "devDependencies": {
     "chainy-plugin-set": "1",
@@ -59,6 +62,5 @@
   "scripts": {
     "test": "node ./test/trickle-test.js"
   },
-  "main": "./lib/trickle.js",
-  "browsers": true
+  "main": "./lib/trickle.js"
 }
